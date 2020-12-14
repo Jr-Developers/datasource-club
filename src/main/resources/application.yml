@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  datasource1: # Club 서버 H2 접속 정보
+    url: jdbc:h2:mem:clubdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    platform: club # 초기 CLUB 테이블 데이터 입력 - /resources/data-club.sql
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 3
+
+  datasource2: # Member 서버 H2 접속 정보
+    url: jdbc:h2:tcp://localhost:9092/mem:memberdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    hikari:
+      initialization-fail-timeout: 1000000 # Member 서버가 기동시간을 기다리기 위해 설정
+      maximum-pool-size: 20
+      minimum-idle: 6
